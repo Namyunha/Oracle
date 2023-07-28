@@ -39,7 +39,30 @@ public class MemberDAO {
         return result;
     }
 	
-	
+    public int save(int id, String name, String phone, String dept, String position, String duty) throws Exception  {
+		System.out.println("save 호출");
+		System.out.println("id" + id + " name: " + name + " dept: " + dept +  " position: " + position + " phone: " + phone + " duty: " + duty);
+		// 1.DB접속
+		con = getConnection();
+		// 2. 쿼리문 작성
+		String sql = "INSERT INTO PERSONNEL(id, name, phone, dept, position, duty) VALUES(?,?,?,?,?,?)";
+		// 3. DB에 전송할 쿼리문 준비
+		pstmt = con.prepareStatement(sql);
+		// 4. 물음표 채우기
+		pstmt.setInt(1, id);
+		pstmt.setString(2, name);
+		pstmt.setString(3, phone);
+		pstmt.setString(4, dept);
+		pstmt.setString(5, position);
+		pstmt.setString(6, duty);
+		// 5. 쿼리문 실행
+		int result = pstmt.executeUpdate();
+		// 6. 실행 후 pstmt 종료
+		pstmt.close();
+		// 7. 접속 종료
+		con.close();
+		return result;
+	}
 }
 
 

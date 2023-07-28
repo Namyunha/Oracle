@@ -24,9 +24,9 @@
 <%@include file="header.jsp"%>
 <%@include file="nav.jsp"%>
 <div id="contents">
-    <form action="saveMember.jsp" name="saveForm">
+    <form id="saveForm" action="saveMember.jsp" name="saveForm">
         회원번호(자동발생): <input type="text" name="custno" value="<%=custno%>"> <br>
-        회원성명: <input id="custname" type="text" name="custname"> <br>
+        회원성명: <input id="custname" type="text" name="custname" > <br>
         회원전화: <input id="phone" type="text" name="phone"> <br>
         회원주소: <input id="address" type="text" name="address"> <br>
         가입일자: <input id="joindate" type="text" name="joindate"> <br>
@@ -37,7 +37,33 @@
     </form>
 </div>
 <%@include file="footer.jsp"%>
-
+<script>
+	const saveCheck = () =>{
+		const saveForm = document.querySelector("#saveForm");
+		const custname = document.querySelector("#custname").value;
+		const phone = document.querySelector("#phone").value;
+		const address = document.querySelector("#address").value;
+		const joindate = document.querySelector("#joindate").value;
+		const grade = document.querySelector("#grade").value;
+		const city = document.querySelector("#city").value;
+		if(custname == ""){
+			alert("회원성명이 입력되지 않았습니다.");
+		} else if(phone == "") {
+			alert("연락처가 입력되지 않았습니다.");
+		} else if(address == "") {
+			alert("주소가 입력되지 않았습니다.");
+		} else if(joindate == "") {
+			alert("날짜가 입력되지 않았습니다.");
+		} else if(grade == "") {
+			alert("고객등급이 입력되지 않았습니다.");
+		} else if(city == "") {
+			alert("도시코드가 입력되지 않았습니다.");
+		} else {
+			alert("회원등록이 완료되었습니다.")
+			saveForm.submit();
+		}
+	}
+</script>
 </body>
 </html>
 
